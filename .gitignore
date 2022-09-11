@@ -1,0 +1,6 @@
+.vscode
+.vs
+
+CMakePresets.json
+cexts/build/
+cexts/dll/
