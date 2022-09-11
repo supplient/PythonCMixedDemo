@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.4...3.18)
 
+# Enable CUDA for linking to cuda_hallo
+enable_language(CUDA)
+
 # Output
 set(OUT_DIR ${PROJECT_SOURCE_DIR}/dll)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUT_DIR})
@@ -33,3 +36,5 @@ endfunction()
 
 # Modules
 build_pybind(hallo)
+build_pybind(cuda_hallo)
+set_property(TARGET py_cuda_hallo PROPERTY CUDA_ARCHITECTURES native) # Comment this if your cmake < 3.24

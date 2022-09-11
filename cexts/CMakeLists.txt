@@ -8,6 +8,7 @@ project ("cexts")
 
 # C++ dlls
 add_subdirectory("hallo")
+add_subdirectory("cuda_hallo")
 
 
 # Python bind
