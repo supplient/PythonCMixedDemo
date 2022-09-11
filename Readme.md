@@ -1,3 +1,4 @@
+#! https://zhuanlan.zhihu.com/p/563444290
 # Python-C混合编程（Python宿主）
 
 本文的撰写目的是总结调研结果，如有错误欢迎指正。
@@ -110,3 +111,29 @@ cuda_hallo.test()
 所以现实中唯一的做法仍然还是启动两个不同的IDE进程，然后让一个IDE启动python进程，让另一个IDE attach上python进程，从而实现混合调试。
 
 
+
+# 示例项目简介
+除了main分支以外还有个cuda分支，那个分支下有个cuda_hallo模块。
+
+构建需要的工具：
+* CMake：>=3.8。最好是3.24版本，因为有个cuda相关的设置是3.24引入的。
+* Python：>=3.7
+* [stubgen](https://mypy.readthedocs.io/en/stable/stubgen.html#stubgen)
+* cuda：如果你想试试cuda分支下的cuda_hallo模块的话
+* git：pybind11是作为submodule放进来的，所以你需要git来clone它。
+
+构建步骤：
+1. 获取pybind11：`git submodule update --init`
+2. 构建C++ library, C++ extension，生成stub file
+	1. `cd cexts/build`
+	2. `cmake ..`
+	3. `cmake --build .`
+3. 完成。`python main.py`查看是否成功导入吧。
+
+目录结构：
+* main.py：测试C++ extension能否正常导入的python文件
+* .vscode：我的python IDE是VSCode，这是它的配置文件
+* cexts：C++ extension的目录
+	* CMakeLists.txt：用于总揽C++ library的构建, C++ extension的构建, stub file的生成。
+	* hallo：C++ library的目录
+	* pybind：C++ extension的目录

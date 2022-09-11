@@ -1,0 +1,4 @@
+{
+	"python.autoComplete.extraPaths": ["${workspaceFolder}/cexts/dll"],
+	"python.analysis.extraPaths": ["${workspaceFolder}/cexts/dll"],
+}
